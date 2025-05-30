@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-video',
   imports: [],
   templateUrl: './video.component.html',
-  styleUrl: './video.component.css'
+  styleUrl: './video.component.css',
 })
-export class VideoComponent {
-
-}
+export class VideoComponent {}
