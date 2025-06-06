@@ -25,7 +25,7 @@ const commonEngine = new CommonEngine();
  */
 
 /**
- * Serve static files from /browser
+ * Serve static assets from /browser
  */
 app.get(
   '**',

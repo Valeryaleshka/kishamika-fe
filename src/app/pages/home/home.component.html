@@ -1,4 +1,44 @@
-<p>
-  Home Componen sd asd asd as dasd as das dasd asd as dasd asd as dasd as dasd
-  asd asd asd asd asd asd asd as d asd asd ass as t
-</p>
+<app-search-bar></app-search-bar>
+<app-bordered-card extract>
+  <h2>Single File Upload</h2>
+  <input
+    type="file"
+    class="file-input"
+    (change)="onChange($event)"
+    #fileUpload
+  />
+
+  @if (file) {
+    <div>
+      <section class="file-info">
+        File details:
+        <ul>
+          <li>Name: {{ file.name }}</li>
+          <li>Type: {{ file.type }}</li>
+          <li>Size: {{ file.size }} bytes</li>
+          <li>
+            <img [src]="filePath" alt="" />
+          </li>
+        </ul>
+      </section>
+
+      <button (click)="onUpload()">Upload the file</button>
+      @switch (status) {
+        @case ('uploading') {
+          <p>⏳ Uploading...</p>
+        }
+        @case ('success') {
+          <p>✅ Done!</p>
+        }
+        @case ('fail') {
+          <p>❌ Error!</p>
+        }
+        @default {
+          <p>😶 Waiting to upload...</p>
+        }
+      }
+    </div>
+  }
+</app-bordered-card>
+
+<ng-component #childRef> Hello </ng-component>
