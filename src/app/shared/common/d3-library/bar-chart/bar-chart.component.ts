@@ -142,10 +142,10 @@ export class BarChartComponent implements AfterViewInit, OnDestroy {
       const rect = this.renderer.createElement('rect', 'http://www.w3.org/2000/svg');
 
       this.renderer.setAttribute(rect, 'x', (xScale(i.toString()) ?? 0).toString()); // Use band scale position
-      this.renderer.setAttribute(rect, 'y', yScale(y).toString());
+      this.renderer.setAttribute(rect, 'y', yScale(y + 2).toString());
       this.renderer.setAttribute(rect, 'width', xScale.bandwidth().toString()); // Dynamic width
       this.renderer.setAttribute(rect, 'height', (yScale(0) - yScale(y)).toString());
-      this.renderer.setAttribute(rect, 'fill', 'blue');
+      this.renderer.setAttribute(rect, 'fill', '#90e0ef');
 
       this.renderer.appendChild(this.svg, rect);
     });
