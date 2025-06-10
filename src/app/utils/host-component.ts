@@ -20,10 +20,8 @@ export const COMPONENT_PROVIDERS = [
 export function getHostComponent(injector: Injector): any {
   // Try to get the host component through various methods
   try {
-    console.log(injector);
     // Method 1: Through the component's own injector
     const component = injector.get(HOST_COMPONENT, null);
-    console.log();
     if (component) return component;
 
     // Method 2: Through ElementRef (less reliable)

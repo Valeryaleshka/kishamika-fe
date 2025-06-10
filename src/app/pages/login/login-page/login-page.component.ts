@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../services/api/api.service';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -24,11 +23,7 @@ export class LoginPageComponent {
   });
 
   onSubmit() {
-    console.log('here');
-    this.api
-      .get('/api/userlogin')
-      .pipe(tap((res) => console.log(res)))
-      .subscribe((res) => console.log(res));
+    this.api.get('/api/userlogin').subscribe((res) => console.log(res));
   }
 
   name = '';

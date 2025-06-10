@@ -13,12 +13,8 @@ export class TitleHandleDirective implements OnInit {
 
   ngOnInit() {
     const host = getHostComponent(this.injector);
-    console.log('host2', this.injector);
-    console.log('host2', host);
 
     if (host) {
-      console.log('Component public properties:', Object.keys(host));
-
       if (this.extract) {
         console.log(`Extracted ${this.extract}:`, host[this.extract]);
       } else {
