@@ -16,7 +16,7 @@
 
 .axis .tick text {
   fill: grey;
-  font-size: 14px; /* Change text size */
+  font-size: 14px;
   font-family: sans-serif;
 }
 
