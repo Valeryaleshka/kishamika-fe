@@ -1,5 +1,5 @@
 <app-search-bar></app-search-bar>
-<app-bordered-card extract>
+<app-content-wrapper extract>
   <h2>Single File Upload</h2>
   <input
     type="file"
@@ -9,7 +9,7 @@
   />
 
   @if (file) {
-    <div>
+    <div class="image-preview">
       <section class="file-info">
         File details:
         <ul>
@@ -39,6 +39,6 @@
       }
     </div>
   }
-</app-bordered-card>
+</app-content-wrapper>
 
-<ng-component #childRef> Hello </ng-component>
+<ng-component #childRef> Hello</ng-component>
