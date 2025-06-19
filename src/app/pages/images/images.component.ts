@@ -8,4 +8,6 @@ import { ContentWrapperComponent } from '../../components/content-wrapper/conten
   styleUrl: './images.component.css',
   imports: [BarChartComponent, ContentWrapperComponent],
 })
-export class ImagesComponent {}
+export class ImagesComponent {
+  values = [815, 150, 250, 320, 400, 550, 325, 625, 22, 556];
+}

@@ -1,13 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { HttpClient } from '@angular/common/http';
-import { BorderedCardComponent } from '../../components/bordered-card/bordered-card.component';
 import { TitleHandleDirective } from '../../derectives/title-handle.directive';
 import { ɵEmptyOutletComponent } from '@angular/router';
+import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-home',
-  imports: [SearchBarComponent, BorderedCardComponent, TitleHandleDirective, ɵEmptyOutletComponent],
+  imports: [
+    SearchBarComponent,
+    TitleHandleDirective,
+    ɵEmptyOutletComponent,
+    ContentWrapperComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
