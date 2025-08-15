@@ -15,6 +15,5 @@ export class HeaderComponent {
     { title: 'Home', link: '/home' },
     { title: 'About', link: '/about' },
     { title: 'Images', link: '/images' },
-    { title: 'Video', link: '/video' },
   ];
 }

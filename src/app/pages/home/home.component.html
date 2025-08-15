@@ -1,13 +1,11 @@
-<app-search-bar></app-search-bar>
-<app-content-wrapper extract>
+<app-content-wrapper centerContent>
   <h2>Single File Upload</h2>
-  <input
-    type="file"
-    class="file-input"
-    (change)="onChange($event)"
-    #fileUpload
-  />
 
+
+  <input type="file" class="file-input"
+         #fileUpload
+         (change)="onChange($event)"
+         id="img"/>
   @if (file) {
     <div class="image-preview">
       <section class="file-info">

@@ -1,18 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { HttpClient } from '@angular/common/http';
-import { TitleHandleDirective } from '../../derectives/title-handle.directive';
 import { ɵEmptyOutletComponent } from '@angular/router';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
+import { CenterDirective } from '../../derectives/center-content.directive';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    SearchBarComponent,
-    TitleHandleDirective,
-    ɵEmptyOutletComponent,
-    ContentWrapperComponent,
-  ],
+  imports: [ɵEmptyOutletComponent, ContentWrapperComponent, CenterDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

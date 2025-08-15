@@ -1,7 +1,26 @@
-<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="email" />
+<app-content-wrapper centerContent>
+  <app-bordered-card>
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <input type="text" formControlName="password" />
+      <app-form-group>
+        <div card-label>
+          Email
+        </div>
+        <div card-input>
+          <input id="email" type="text" formControlName="email" />
+        </div>
+      </app-form-group>
 
-  <button>Submit</button>
-</form>
+      <app-form-group>
+        <div card-label>
+          Password
+        </div>
+        <div card-input>
+          <input type="password" autocomplete="new-password" id="password" formControlName="password" />
+        </div>
+      </app-form-group>
+
+      <button>Submit</button>
+    </form>
+  </app-bordered-card>
+</app-content-wrapper>

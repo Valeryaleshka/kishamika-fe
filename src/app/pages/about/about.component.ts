@@ -1,25 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CenterDirective } from '../../derectives/center-content.directive';
+import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [CenterDirective, ContentWrapperComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
 })
-export class AboutComponent implements OnInit {
-  ngOnInit() {
-    this.log(this.onj);
-  }
-
-  private onj = {
-    name: 'Kika',
-    age: 20,
-    gender: {
-      male: true,
-    },
-  };
-
-  log(obj: any) {
-    console.log(this.onj);
-  }
-}
+export class AboutComponent {}
