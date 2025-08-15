@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  apiUrl = 'https://683fa83b5b39a8039a55384e.mockapi.io/';
+  apiUrl = 'http://localhost:3000/';
 
   post<T>(url: string, body: any, headers?: HttpHeaders): Observable<T> {
     return this.http.post<T>(this.apiUrl + url, body, { headers });

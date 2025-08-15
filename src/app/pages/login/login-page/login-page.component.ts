@@ -34,7 +34,7 @@ export class LoginPageComponent {
   });
 
   onSubmit() {
-    this.api.get('/api/userlogin').subscribe((res) => console.log(res));
+    this.api.get('').subscribe((res) => console.log(res));
   }
 
   name = '';
