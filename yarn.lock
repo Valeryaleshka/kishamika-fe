@@ -268,6 +268,14 @@
   optionalDependencies:
     lmdb "3.4.1"
 
+"@angular/cdk@^20.1.6":
+  version "20.1.6"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-20.1.6.tgz#4b7f139bab286fbcfc45223d6f81a307370d1692"
+  integrity sha512-GKxCS/GOAOQCNTnrvYia9wR4Z9rRWjzNRE0989LXwWLYcmiG7+ku30PolGV7zhmlgUu/qx8P6BbxZgUvK34X/A==
+  dependencies:
+    parse5 "^8.0.0"
+    tslib "^2.3.0"
+
 "@angular/cli@^20.0.0":
   version "20.1.6"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-20.1.6.tgz#7a1200972a1b9b25597e3399ffb6a89bbdbb1096"
@@ -332,6 +340,13 @@
   version "20.1.7"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-20.1.7.tgz#ac5274a5f650812aef263f2e3016d979daf5f6f3"
   integrity sha512-gHfCeW7gp7GLjHfNOF+es8gAYph4+ZhgfvP9cdj9RmRy7ckQTuJ2OwrWmruqRcrB3J46uqENQyrNhJz0ubozYA==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/material@^20.1.6":
+  version "20.1.6"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-20.1.6.tgz#0b6d721b19bb244078b02d380780dbb17c9f63aa"
+  integrity sha512-k2rjN6ABd5ahE4LWAJ5rv7Z3WAO6tgmjOrFZG7ED0xavhcGWyHroALFqdmlIkb2QFAAF186ifLIH+xgln9edqw==
   dependencies:
     tslib "^2.3.0"
 
@@ -2876,6 +2891,11 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
+"@types/lodash@^4.17.20":
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.20.tgz#1ca77361d7363432d29f5e55950d9ec1e1c6ea93"
+  integrity sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==
+
 "@types/mime@^1":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.5.tgz#1ef302e01cf7d2b5a0fa526790c9123bf1d06690"
@@ -4207,9 +4227,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.199:
-  version "1.5.202"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.202.tgz#e243716943a2cab144604a81b9ebaa87b4e8c1d4"
-  integrity sha512-NxbYjRmiHcHXV1Ws3fWUW+SLb62isauajk45LUJ/HgIOkUA7jLZu/X2Iif+X9FBNK8QkF9Zb4Q2mcwXCcY30mg==
+  version "1.5.203"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.203.tgz#ef7fc2f7e1b816fa4535c861d1ec1348204142b6"
+  integrity sha512-uz4i0vLhfm6dLZWbz/iH88KNDV+ivj5+2SA+utpgjKaj9Q0iDLuwk6Idhe9BTxciHudyx6IvTvijhkPvFGUQ0g==
 
 emoji-regex@^10.3.0:
   version "10.4.0"
@@ -6438,6 +6458,13 @@ parse5@^7.0.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-7.3.0.tgz#d7e224fa72399c7a175099f45fc2ad024b05ec05"
   integrity sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==
+  dependencies:
+    entities "^6.0.0"
+
+parse5@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-8.0.0.tgz#aceb267f6b15f9b6e6ba9e35bfdd481fc2167b12"
+  integrity sha512-9m4m5GSgXjL4AjumKzq1Fgfp3Z8rsvjRNbnkVwfu2ImRqE5D0LnY2QfDen18FSY9C573YU5XxSapdHZTZ2WolA==
   dependencies:
     entities "^6.0.0"
 

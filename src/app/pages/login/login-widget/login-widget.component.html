@@ -1,4 +1,4 @@
-@if (userService.getUser()) {
+@if (currentUser()) {
   <button (click)="logout()">Logout</button>
 } @else {
   <app-header-menu [menu]="menuItems"></app-header-menu>

@@ -5,11 +5,11 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { serverRoutes } from './app.routes.server';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './authInterceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),

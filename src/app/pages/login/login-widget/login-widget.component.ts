@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { HeaderMenuComponent } from '../../../components/header-menu/header-menu.component';
 
@@ -10,7 +10,8 @@ import { HeaderMenuComponent } from '../../../components/header-menu/header-menu
   styleUrl: './login-widget.component.css',
 })
 export class LoginWidgetComponent {
-  protected userService = inject(UserService);
+  private userService = inject(UserService);
+  protected currentUser = computed(this.userService.getUser);
 
   menuItems = [
     { title: 'Login', link: '/login' },
@@ -18,6 +19,6 @@ export class LoginWidgetComponent {
   ];
 
   logout() {
-    console.log('Logged Out');
+    this.userService.logoutUser();
   }
 }

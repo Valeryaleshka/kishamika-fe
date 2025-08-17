@@ -13,4 +13,8 @@ export class UserService {
   public loginUser(user: any) {
     this.currentUser.set(user);
   }
+
+  public logoutUser() {
+    this.currentUser.set(null);
+  }
 }

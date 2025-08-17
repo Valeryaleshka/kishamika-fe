@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { LoginWidgetComponent } from '../../pages/login/login-widget/login-widget.component';
 import { HeaderMenuComponent } from '../header-menu/header-menu.component';
-import { HeaderMenu } from '../header-menu/header-input.interface';
+import { UserService } from '../../services/user/user.service';
+import { insertIf } from '../../shared/utils/utils';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,15 @@ import { HeaderMenu } from '../header-menu/header-input.interface';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  menuItems: HeaderMenu[] = [
-    { title: 'Home', link: '/home' },
-    { title: 'About', link: '/about' },
-    { title: 'Images', link: '/images' },
-  ];
+  private userService = inject(UserService);
+
+  menuItems = computed(() => {
+    const user = this.userService.getUser(); // Get Signal value
+    return [
+      { title: 'Home', link: '/home' },
+      { title: 'About', link: '/about' },
+      { title: 'Images', link: '/images' },
+      { title: 'Users', link: '/users' },
+    ];
+  });
 }

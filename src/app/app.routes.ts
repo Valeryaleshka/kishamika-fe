@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ImagesComponent } from './pages/images/images.component';
 import { RootComponent } from './pages/root/root.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 
 export const routes: Routes = [
@@ -12,39 +8,41 @@ export const routes: Routes = [
     component: RootComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: '/home' },
-      { path: 'home',
-        loadComponent: () =>
-          import('./pages/home/home.component')
-            .then(m => m.HomeComponent)
-        },
-      { path: 'about',
-        loadComponent: () =>
-          import('./pages/about/about.component')
-            .then(m => m.AboutComponent)
+      {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
+      },
+      {
+        path: 'about',
+        loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
       },
       {
         path: 'images',
         loadComponent: () =>
-          import('./pages/images/images.component')
-            .then(m => m.ImagesComponent)
+          import('./pages/images/images.component').then((m) => m.ImagesComponent),
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./pages/users/users.component').then((m) => m.UsersComponent),
       },
       {
         path: 'login',
         loadComponent: () =>
-          import('./pages/login/login-page/login-page.component')
-            .then(m => m.LoginPageComponent)
+          import('./pages/login/login-page/login-page.component').then((m) => m.LoginPageComponent),
       },
       {
         path: 'register',
+        data: { register: true },
         loadComponent: () =>
-          import('./pages/login/login-page/login-page.component')
-            .then(m => m.LoginPageComponent)
+          import('./pages/login/login-page/login-page.component').then((m) => m.LoginPageComponent),
       },
     ],
   },
-  { path: '**',
+  {
+    path: '**',
     loadComponent: () =>
-      import('./pages/not-found-page/not-found-page.component')
-        .then(m => m.NotFoundPageComponent)
-    },
+      import('./pages/not-found-page/not-found-page.component').then(
+        (m) => m.NotFoundPageComponent,
+      ),
+  },
 ];

@@ -2,6 +2,17 @@
   <app-bordered-card>
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
+      @if(isRegisterForm){
+        <app-form-group>
+          <div card-label>
+            Name
+          </div>
+          <div card-input>
+            <input id="name" type="text" formControlName="name" />
+          </div>
+        </app-form-group>
+      }
+
       <app-form-group>
         <div card-label>
           Email
