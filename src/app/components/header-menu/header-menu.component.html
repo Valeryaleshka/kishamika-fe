@@ -1,7 +1,5 @@
 <ul>
   @for (item of menu(); track item.title) {
-    <li>
-      <a [routerLink]="item.link" routerLinkActive="active">{{ item.title }}</a>
-    </li>
+    <button nz-button nzType="primary" [routerLink]="item.link" routerLinkActive="active">{{ item.title }}</button>
   }
 </ul>

@@ -1,42 +1,19 @@
 <app-content-wrapper centerContent>
-  <h2>Single File Upload</h2>
+  @if(!preview){
+    <input type="file" class="file-input"
+           (change)="updateImageDisplay($event)" #fileUpload>
+  }
 
-
-  <input type="file" class="file-input"
-         #fileUpload
-         (change)="onChange($event)"
-         id="img"/>
-  @if (file) {
-    <div class="image-preview">
-      <section class="file-info">
-        File details:
-        <ul>
-          <li>Name: {{ file.name }}</li>
-          <li>Type: {{ file.type }}</li>
-          <li>Size: {{ file.size }} bytes</li>
-          <li>
-            <img [src]="filePath" alt="" />
-          </li>
-        </ul>
-      </section>
-
-      <button (click)="onUpload()">Upload the file</button>
-      @switch (status) {
-        @case ('uploading') {
-          <p>⏳ Uploading...</p>
-        }
-        @case ('success') {
-          <p>✅ Done!</p>
-        }
-        @case ('fail') {
-          <p>❌ Error!</p>
-        }
-        @default {
-          <p>😶 Waiting to upload...</p>
-        }
+  @if(preview){
+    <div class="image-container">
+      <img class="image-preview " [src]="preview" alt=""/>
+      <button nz-button nzType="primary" (click)="preview = null">Delete</button>
+      <button nz-button (click)="compressFile()">Compress</button>
+      @if(compressed){
+        <img class="image-preview " [src]="compressed" alt=""/>
+        <button nz-button (click)="download()">Download</button>
       }
     </div>
+
   }
 </app-content-wrapper>
-
-<ng-component #childRef> Hello</ng-component>

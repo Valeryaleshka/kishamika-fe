@@ -18,9 +18,8 @@ export class HeaderComponent {
     const user = this.userService.getUser(); // Get Signal value
     return [
       { title: 'Home', link: '/home' },
-      { title: 'About', link: '/about' },
-      { title: 'Images', link: '/images' },
-      { title: 'Users', link: '/users' },
+      // { title: 'Images', link: '/images' },
+      ...insertIf(this.userService.getUser(), { title: 'Users', link: '/users' }),
     ];
   });
 }

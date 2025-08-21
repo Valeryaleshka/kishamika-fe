@@ -1,5 +1,6 @@
 @if (currentUser()) {
-  <button (click)="logout()">Logout</button>
+  <button nz-button nzType="primary" (click)="logout()">Logout</button>
+
 } @else {
   <app-header-menu [menu]="menuItems"></app-header-menu>
 }

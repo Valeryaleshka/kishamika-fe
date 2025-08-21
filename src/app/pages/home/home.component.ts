@@ -1,40 +1,67 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ɵEmptyOutletComponent } from '@angular/router';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
+import { NzUploadFile, NzUploadModule, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { CenterDirective } from '../../derectives/center-content.directive';
-import { NgClass } from '@angular/common';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NgxImageCompressService } from 'ngx-image-compress';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-home',
-  imports: [ɵEmptyOutletComponent, ContentWrapperComponent, CenterDirective],
+  imports: [ContentWrapperComponent, CenterDirective, NzButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
-  http = inject(HttpClient);
-  status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial';
-  file: File | null = null;
-  filePath: string | ArrayBuffer | null = null;
+export class HomeComponent {
+  private imageCompress = inject(NgxImageCompressService);
+  private messageService = inject(NzMessageService);
 
-  ngOnInit(): void {}
+  protected preview: string | null = null;
+  protected compressed: string | null = null;
 
-  // On file Select
-  onChange(event: any) {
-    const file: File = event.target.files[0];
-    const reader = new FileReader();
+  currentFile: File | null = null;
+  availableForCompress = true;
 
-    if (file) {
-      this.status = 'initial';
-      this.file = file;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.filePath = reader.result;
-      };
+  updateImageDisplay(event: Event): void {
+    // Cast the event target to HTMLInputElement to access files property
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.currentFile = input.files[0];
+
+      this.preview = URL.createObjectURL(this.currentFile);
+      console.log(this.preview);
     }
   }
 
-  onUpload() {
-    // we will implement this method later
+  async compressFile() {
+    if (this.currentFile && this.preview && this.availableForCompress) {
+      this.availableForCompress = false;
+      const currentOrientation = await this.imageCompress.getOrientation(this.currentFile);
+      this.imageCompress
+        .compressFile(this.preview, currentOrientation, 50, 50)
+        .then((compressedImage) => {
+          this.compressed = compressedImage;
+          this.messageService.success('Successfully compressed');
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          this.availableForCompress = true;
+        });
+    }
+  }
+
+  download() {
+    if (this.compressed) {
+      const link = document.createElement('a');
+      link.setAttribute('type', 'hidden');
+      link.setAttribute('download', '');
+      link.href = this.compressed;
+      link.click();
+    }
   }
 }

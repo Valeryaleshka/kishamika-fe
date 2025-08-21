@@ -11,10 +11,10 @@ export class ApiService {
   apiUrl = environment.apiUrl;
 
   get<T>(url: string, params?: HttpParams, headers?: HttpHeaders): Observable<T> {
-    return this.http.get<T>(this.apiUrl + url, { params, headers });
+    return this.http.get<T>(this.apiUrl + url, { params, withCredentials: true, headers });
   }
 
   post<T>(url: string, body: any, headers?: HttpHeaders): Observable<T> {
-    return this.http.post<T>(this.apiUrl + url, body, { headers });
+    return this.http.post<T>(this.apiUrl + url, body, { withCredentials: true, headers });
   }
 }

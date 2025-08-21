@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
 import { RootComponent } from './pages/root/root.component';
-import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { UserResolver } from './shared/resolvers/user.resolver';
 
 export const routes: Routes = [
   {
     path: '',
     component: RootComponent,
+    resolve: {
+      userData: UserResolver,
+    },
     children: [
       { path: '', pathMatch: 'full', redirectTo: '/home' },
       {

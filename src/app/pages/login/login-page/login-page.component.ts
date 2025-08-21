@@ -17,6 +17,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { omit } from 'lodash';
 import { UserService } from '../../../services/user/user.service';
 import { Router } from '@angular/router';
+import { NzInputDirective } from 'ng-zorro-antd/input';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'app-login-page',
@@ -30,6 +32,8 @@ import { Router } from '@angular/router';
     CenterDirective,
     BorderedCardComponent,
     FormGroupComponent,
+    NzInputDirective,
+    NzButtonComponent,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
