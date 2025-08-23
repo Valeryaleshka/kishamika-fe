@@ -31,7 +31,7 @@ export class BarChartComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.renderChart(true);
+      this.renderChart();
       this.setupResizeObserver();
     }
   }
@@ -51,7 +51,7 @@ export class BarChartComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private renderChart(isNew = false) {
+  private renderChart() {
     const element = this.hostElement.nativeElement;
     const containerWidth = element.clientWidth;
     const containerHeight = element.clientHeight;

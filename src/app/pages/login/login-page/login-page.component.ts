@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,30 +10,34 @@ import { ApiService } from '../../../services/api/api.service';
 import { ContentWrapperComponent } from '../../../components/content-wrapper/content-wrapper.component';
 import { CenterDirective } from '../../../derectives/center-content.directive';
 import { BorderedCardComponent } from '../../../components/bordered-card/bordered-card.component';
-import { FormGroupComponent } from '../../../components/form-group/form-group.component';
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { omit } from 'lodash';
 import { UserService } from '../../../services/user/user.service';
 import { Router } from '@angular/router';
-import { NzInputDirective } from 'ng-zorro-antd/input';
-import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { matchValidator } from '../../../shared/common/helpers/form.helper';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { User } from '../../users/users.types';
+
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   providers: [ApiService],
   imports: [
+    ReactiveFormsModule,
+    NzButtonModule,
+    NzFormModule,
+    NzInputModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     ContentWrapperComponent,
     CenterDirective,
     BorderedCardComponent,
-    FormGroupComponent,
     NzInputDirective,
-    NzButtonComponent,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',
@@ -45,15 +49,29 @@ export class LoginPageComponent {
   private userService = inject(UserService);
   private router = inject(Router);
   protected isRegisterForm = false;
+  protected formValidationErrors = {
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  };
 
-  protected form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+  protected form = new FormGroup<Record<string, FormControl>>({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl(''),
   });
 
   constructor() {
     this.isRegisterForm = this.route.snapshot.data['register'];
+    if(this.isRegisterForm){
+      this.form.addControl('name', new FormControl('', [Validators.required]));
+      this.form.addControl('confirmPassword', new FormControl('', [Validators.required, matchValidator('password')]));
+      this.form.get('password')?.addValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(25),
+      ])
+    }
   }
 
   onSubmit() {
@@ -62,12 +80,12 @@ export class LoginPageComponent {
         .post('auth/register', this.form.value)
         .pipe(take(1))
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((res) => {
+        .subscribe(_ => {
           this.router.navigate(['/login']).then();
         });
     } else {
       this.api
-        .post('auth/login', omit(this.form.value, 'name'))
+        .post<User>('auth/login', this.form.value)
         .pipe(take(1))
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((user) => {

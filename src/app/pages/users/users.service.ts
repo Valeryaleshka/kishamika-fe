@@ -1,8 +1,7 @@
-import { computed, DestroyRef, inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { Observable } from 'rxjs';
 import { User } from './users.types';
-import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',

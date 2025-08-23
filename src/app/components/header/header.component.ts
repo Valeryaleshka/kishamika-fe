@@ -15,10 +15,8 @@ export class HeaderComponent {
   private userService = inject(UserService);
 
   menuItems = computed(() => {
-    const user = this.userService.getUser(); // Get Signal value
     return [
       { title: 'Home', link: '/home' },
-      // { title: 'Images', link: '/images' },
       ...insertIf(this.userService.getUser(), { title: 'Users', link: '/users' }),
     ];
   });

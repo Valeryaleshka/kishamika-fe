@@ -1,8 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ContentWrapperComponent } from '../../components/content-wrapper/content-wrapper.component';
-import { NzUploadFile, NzUploadModule, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { CenterDirective } from '../../derectives/center-content.directive';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NgxImageCompressService } from 'ngx-image-compress';
