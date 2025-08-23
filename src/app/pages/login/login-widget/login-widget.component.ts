@@ -16,7 +16,6 @@ import { RouterLinkActive } from '@angular/router';
 })
 export class LoginWidgetComponent {
   private userService = inject(UserService);
-  private authS = this.userService.getUser();
   protected currentUser = computed(this.userService.getUser);
 
   menuItems = [
