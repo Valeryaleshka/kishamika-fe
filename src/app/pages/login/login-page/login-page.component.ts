@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,13 +13,13 @@ import { BorderedCardComponent } from '../../../components/bordered-card/bordere
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { omit } from 'lodash';
 import { UserService } from '../../../services/user/user.service';
 import { Router } from '@angular/router';
 import { NzInputDirective, NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { matchValidator } from '../../../shared/common/helpers/form.helper';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { User } from '../../users/users.types';
 
 
 @Component({
@@ -80,12 +80,12 @@ export class LoginPageComponent {
         .post('auth/register', this.form.value)
         .pipe(take(1))
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((res) => {
+        .subscribe(_ => {
           this.router.navigate(['/login']).then();
         });
     } else {
       this.api
-        .post('auth/login', this.form.value)
+        .post<User>('auth/login', this.form.value)
         .pipe(take(1))
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((user) => {

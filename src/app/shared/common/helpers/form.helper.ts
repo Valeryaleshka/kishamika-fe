@@ -1,17 +1,19 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn, FormGroup } from '@angular/forms';
 
 export function matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    if (control.parent && reverse) {
-      const c = (control.parent?.controls as any)[matchTo] as AbstractControl;
-      if (c) {
-        c.updateValueAndValidity();
+    const parent = control.parent as FormGroup | null;
+
+    if (parent && reverse) {
+      const matchControl = parent.get(matchTo);
+      if (matchControl) {
+        matchControl.updateValueAndValidity();
       }
       return null;
     }
-    return !!control.parent &&
-      !!control.parent.value &&
-      control.value === (control.parent?.controls as any)[matchTo].value
+
+    const matchControl = parent?.get(matchTo);
+    return parent && matchControl && control.value === matchControl.value
       ? null
       : { matching: true };
   };
