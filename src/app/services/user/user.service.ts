@@ -1,8 +1,8 @@
 import { computed, DestroyRef, inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { UserInteface } from './user.service.interfaces';
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ApiService } from '../api/api.service';
+import { User } from '../../pages/users/users.types';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,10 @@ import { ApiService } from '../api/api.service';
 export class UserService {
   private api = inject(ApiService);
   private destroyRef = inject(DestroyRef);
-  private currentUser: WritableSignal<UserInteface | null> = signal(null);
+  private currentUser: WritableSignal<User | null> = signal(null);
   public getUser = computed(() => this.currentUser());
 
-  public loginUser(user: any) {
+  public loginUser(user: User) {
     this.currentUser.set(user);
   }
 
@@ -22,7 +22,7 @@ export class UserService {
       .post('auth/logout', {})
       .pipe(take(1))
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((user) => {
+      .subscribe(_ => {
         this.currentUser.set(null);
       });
   }

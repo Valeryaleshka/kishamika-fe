@@ -14,7 +14,8 @@ export const appReducer = createReducer(
   on(setTheme, (state, { theme }) => ({ ...state, theme })),
   on(toggleTheme, (state) => ({
     ...state,
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
     theme: state.theme === 'light' ? 'dark' : 'light'
   }))
 );
